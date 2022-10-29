@@ -51,8 +51,11 @@ const HomeScreen = () => {
               setDataModal({
                 id: item.id,
                 name: item.name,
-                type: item.type,
                 image: item.image,
+                status: item.status,
+                species: item.species,
+                gender: item.gender,
+                episode: item.episode,
               });
               stateModal(true);
             }}>

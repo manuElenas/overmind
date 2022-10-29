@@ -3,7 +3,7 @@
 //  counter: number;
 //};
 
-import {Result} from '../interfaces/RickAndMorty';
+import {Gender, Result, Species, Status} from '../interfaces/RickAndMorty';
 
 //export const state: State = {
 //  counter: 20,
@@ -12,7 +12,15 @@ type State = {
   data: Result[];
   isLoading: boolean;
   modal: boolean;
-  dataModal: Result;
+  dataModal: {
+    id: number;
+    name: string;
+    image: string;
+    status: Status | null;
+    species: Species | null;
+    gender: Gender | null;
+    episode: String[];
+  };
 };
 
 export const state: State = {
@@ -22,7 +30,10 @@ export const state: State = {
   dataModal: {
     id: 0,
     name: '',
-    type: '',
     image: '',
+    status: null,
+    species: null,
+    gender: null,
+    episode: [],
   },
 };
