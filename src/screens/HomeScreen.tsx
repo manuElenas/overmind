@@ -12,6 +12,7 @@ import {
 import React, {useEffect} from 'react';
 import {useAction, useAppState} from '../overmind';
 import {Result} from '../interfaces/RickAndMorty';
+import CModal from '../component/CModal';
 //import useAPI from '../hooks/useAPI';
 
 interface Props {
@@ -19,7 +20,7 @@ interface Props {
 }
 
 const HomeScreen = () => {
-  const {getData} = useAction();
+  const {getData, stateModal, setDataModal} = useAction();
   const {data, isLoading} = useAppState();
   useEffect(() => {
     getData();
@@ -45,7 +46,16 @@ const HomeScreen = () => {
           <Text style={{...styles.renderTitle, fontSize: 12}}>
             {item.gender}
           </Text>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={() => {
+              setDataModal({
+                id: item.id,
+                name: item.name,
+                type: item.type,
+                image: item.image,
+              });
+              stateModal(true);
+            }}>
             <View style={{marginTop: 10}} />
             <Text style={{color: 'blue'}}>More...</Text>
           </TouchableOpacity>
@@ -55,14 +65,23 @@ const HomeScreen = () => {
   };
 
   return (
-    <View style={styles.container}>
-      <FlatList
-        data={data}
-        renderItem={renderItem}
-        keyExtractor={(item: Result) => item.id.toString()}
-        showsVerticalScrollIndicator={false}
-      />
-    </View>
+    <>
+      <View style={styles.container}>
+        <FlatList
+          data={data}
+          renderItem={renderItem}
+          keyExtractor={(item: Result) => item.id.toString()}
+          showsVerticalScrollIndicator={false}
+        />
+        {/* <Modal visible={modal} animationType="slide">
+          <Button title="Cerrar Modal" onPress={() => stateModal(false)} />
+          <View>
+            <Image source={{uri: }}/>
+          </View>
+        </Modal> */}
+        <CModal />
+      </View>
+    </>
   );
 };
 

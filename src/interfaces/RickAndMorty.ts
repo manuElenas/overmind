@@ -13,16 +13,16 @@ export interface Info {
 export interface Result {
   id: number;
   name: string;
-  status: Status;
-  species: Species;
-  type: string;
-  gender: Gender;
-  origin: Location;
-  location: Location;
-  image: string;
-  episode: string[];
-  url: string;
-  created: Date;
+  status?: Status;
+  species?: Species;
+  type?: string;
+  gender?: Gender;
+  origin?: Location;
+  location?: Location;
+  image?: string;
+  episode?: string[];
+  url?: string;
+  created?: Date;
 }
 
 export enum Gender {

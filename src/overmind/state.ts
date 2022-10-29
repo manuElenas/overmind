@@ -11,9 +11,18 @@ import {Result} from '../interfaces/RickAndMorty';
 type State = {
   data: Result[];
   isLoading: boolean;
+  modal: boolean;
+  dataModal: Result;
 };
 
 export const state: State = {
   data: [],
   isLoading: true,
+  modal: false,
+  dataModal: {
+    id: 0,
+    name: '',
+    type: '',
+    image: '',
+  },
 };
