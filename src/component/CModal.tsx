@@ -35,8 +35,9 @@ const CModal = () => {
               <Text style={{...styles.generalText, fontSize: 20}}>
                 Episodes:
               </Text>
-              {dataModal.episode.map(item => (
+              {dataModal.episode.map((item, index) => (
                 <Text
+                  key={index}
                   style={{...styles.generalText, fontSize: 12, color: 'black'}}>
                   {item}
                 </Text>
