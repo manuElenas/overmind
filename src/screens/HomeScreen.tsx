@@ -1,5 +1,5 @@
-/* eslint-disable react-native/no-inline-styles */
 /* eslint-disable react-hooks/exhaustive-deps */
+/* eslint-disable react-native/no-inline-styles */
 import {
   View,
   StyleSheet,
@@ -20,10 +20,11 @@ interface Props {
 }
 
 const HomeScreen = () => {
-  const {getData, stateModal, setDataModal} = useAction();
+  const {getCharacters, stateModal, setDataModal} = useAction();
   const {data, isLoading} = useAppState();
+
   useEffect(() => {
-    getData();
+    getCharacters();
   }, []);
 
   if (isLoading) {

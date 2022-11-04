@@ -1,13 +1,5 @@
-//overmind/state.ts
-//type State = {
-//  counter: number;
-//};
-
 import {Gender, Result, Species, Status} from '../interfaces/RickAndMorty';
 
-//export const state: State = {
-//  counter: 20,
-//};
 type State = {
   data: Result[];
   isLoading: boolean;
