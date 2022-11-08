@@ -7,6 +7,23 @@ export const characters = gql`
         id
         name
         species
+        status
+        image
+      }
+    }
+  }
+`;
+
+export const getCharte = gql`
+  query getCharter($pId: ID!) {
+    character(id: $pId) {
+      name
+      image
+      status
+      species
+      episode {
+        episode
+        name
       }
     }
   }

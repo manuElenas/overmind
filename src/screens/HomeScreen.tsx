@@ -20,7 +20,7 @@ interface Props {
 }
 
 const HomeScreen = () => {
-  const {getCharacters, stateModal, setDataModal} = useAction();
+  const {getPerson, getCharacters, stateModal} = useAction();
   const {data, isLoading} = useAppState();
 
   useEffect(() => {
@@ -37,34 +37,25 @@ const HomeScreen = () => {
 
   const renderItem = ({item}: Props) => {
     return (
-      <View style={styles.containerRender}>
-        <Image source={{uri: item.image}} style={styles.imagenRender} />
-        <View style={styles.containerText}>
-          <Text style={styles.renderTitle}>{item.name}</Text>
-          <Text style={{...styles.renderTitle, fontSize: 15}}>
-            {item.status} - {item.species}
-          </Text>
-          <Text style={{...styles.renderTitle, fontSize: 12}}>
-            {item.gender}
-          </Text>
-          <TouchableOpacity
-            onPress={() => {
-              setDataModal({
-                id: item.id,
-                name: item.name,
-                image: item.image,
-                status: item.status,
-                species: item.species,
-                gender: item.gender,
-                episode: item.episode,
-              });
-              stateModal(true);
-            }}>
-            <View style={{marginTop: 10}} />
-            <Text style={{color: 'blue'}}>More...</Text>
-          </TouchableOpacity>
+      <TouchableOpacity
+        activeOpacity={0.8}
+        onPress={() => {
+          getPerson(item.id);
+          stateModal(true);
+        }}>
+        <View style={styles.containerRender}>
+          <Image source={{uri: item.image}} style={styles.imagenRender} />
+          <View style={styles.containerText}>
+            <Text style={styles.renderTitle}>{item.name}</Text>
+            <Text style={{...styles.renderTitle, fontSize: 15}}>
+              {item.status} - {item.species}
+            </Text>
+            <Text style={{...styles.renderTitle, fontSize: 12}}>
+              {item.gender}
+            </Text>
+          </View>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   };
 

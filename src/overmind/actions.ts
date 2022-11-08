@@ -1,28 +1,30 @@
 // overmind/actions.ts
 import {IAction} from 'overmind';
+import {Context} from '.';
 import {Result} from '../interfaces/RickAndMorty';
-
-//ACTION GET DATA API
-// export const getData = async ({state}: any) => {
-//   const res = await fetch('https://rickandmortyapi.com/api/character');
-//   const resJSON = await res.json();
-//   state.data = resJSON.results;
-//   state.isLoading = false;
-// };
 
 //ACTION GET DATA API WITH GRAPHQL
 export const getCharacters = async ({state, effects}: any) => {
   const {characters} = await effects.gql.queries.characters();
-  state.data = characters;
-  console.log(characters);
+  state.data = characters.results;
   state.isLoading = false;
 };
-// export const getCharacters = async ({state, effects}: any) => {
-//   const {characters} = await effects.gql.queries.characters();
-//   state.data = characters;
-//   console.log(characters);
-//   state.isLoading = false;
-// };
+
+export const onInitializeOvermind = async ({effects}: any) => {
+  effects.gql.initialize({
+    endpoint: 'https://rickandmortyapi.com/graphql',
+  });
+};
+
+//GET CHARACTER
+export const getPerson = async (
+  {state, effects}: Context,
+  id: number,
+): Promise<void> => {
+  const {character} = await effects.gql.queries.getCharte({pId: id});
+  state.dataModal = character;
+  console.log(state.dataModal.episode);
+};
 
 //ACTION STATE MODAL
 export const stateModal: IAction<boolean, void> = ({state}, isVisible) => {

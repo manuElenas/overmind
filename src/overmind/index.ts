@@ -5,14 +5,12 @@ import {
   createActionsHook,
   createEffectsHook,
 } from 'overmind-react';
-import {onInitialize} from './effects/gql/onInitialize';
 import {gql} from './effects/gql';
 import {state} from './state';
 import * as actions from './actions';
 
 export const config = {
   state,
-  onInitialize,
   actions,
   effects: {
     gql,
