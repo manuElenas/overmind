@@ -28,7 +28,7 @@ export const state: State = {
   dataModal: {
     id: 0,
     name: '',
-    image: '',
+    image: 'https://rickandmortyapi.com/api/character/avatar/19.jpeg',
     status: null,
     species: null,
     gender: null,

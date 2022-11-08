@@ -71,28 +71,40 @@ const HomeScreen = () => {
           keyExtractor={(item: Result) => item.id.toString()}
           ref={topRef}
         />
+        <CModal />
+        {/* <View style={styles.contentButtons}> */}
+        {/* {num !== 2 && (
+            <Button
+              title="Anterior"
+              onPress={() => {
+                if (num <= 42) {
+                  nextPages(num);
+                  topRef.current.scrollToIndex({index: 0, animated: true});
+                  setNum(num + 1);
+                } else {
+                  // setNum(1);
+                  // nextPages(num);
+                  topRef.current.scrollToIndex({index: 0, animated: true});
+                }
+              }}
+            />
+          )} */}
         <Button
-          title="Siguiente"
+          title="Siguiente página"
           onPress={() => {
             if (num <= 42) {
               nextPages(num);
               topRef.current.scrollToIndex({index: 0, animated: true});
               setNum(num + 1);
             } else {
-              setNum(1);
-              nextPages(num);
+              // setNum(1);
+              // nextPages(num);
               topRef.current.scrollToIndex({index: 0, animated: true});
             }
           }}
         />
-        {/* <Modal visible={modal} animationType="slide">
-          <Button title="Cerrar Modal" onPress={() => stateModal(false)} />
-          <View>
-            <Image source={{uri: }}/>
-          </View>
-        </Modal> */}
-        <CModal />
       </View>
+      {/* </View> */}
     </>
   );
 };
@@ -126,5 +138,10 @@ const styles = StyleSheet.create({
   renderTitle: {
     fontSize: 20,
     fontWeight: '600',
+  },
+  contentButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    margin: 10,
   },
 });
