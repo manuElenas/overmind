@@ -8,8 +8,9 @@ import {
   ActivityIndicator,
   Text,
   TouchableOpacity,
+  Button,
 } from 'react-native';
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef, useState} from 'react';
 import {useAction, useAppState} from '../overmind';
 import {Result} from '../interfaces/RickAndMorty';
 import CModal from '../component/CModal';
@@ -20,8 +21,10 @@ interface Props {
 }
 
 const HomeScreen = () => {
-  const {getPerson, getCharacters, stateModal} = useAction();
+  const {nextPages, getPerson, getCharacters, stateModal} = useAction();
   const {data, isLoading} = useAppState();
+  const topRef = useRef<any>();
+  const [num, setNum] = useState(2);
 
   useEffect(() => {
     getCharacters();
@@ -66,7 +69,21 @@ const HomeScreen = () => {
           data={data}
           renderItem={renderItem}
           keyExtractor={(item: Result) => item.id.toString()}
-          showsVerticalScrollIndicator={false}
+          ref={topRef}
+        />
+        <Button
+          title="Siguiente"
+          onPress={() => {
+            if (num <= 42) {
+              nextPages(num);
+              topRef.current.scrollToIndex({index: 0, animated: true});
+              setNum(num + 1);
+            } else {
+              setNum(1);
+              nextPages(num);
+              topRef.current.scrollToIndex({index: 0, animated: true});
+            }
+          }}
         />
         {/* <Modal visible={modal} animationType="slide">
           <Button title="Cerrar Modal" onPress={() => stateModal(false)} />

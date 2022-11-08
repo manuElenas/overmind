@@ -39,7 +39,7 @@ const CModal = () => {
                 <Text
                   key={index}
                   style={{...styles.generalText, fontSize: 12, color: 'black'}}>
-                  {item.name}
+                  Name: {item.name}
                 </Text>
               ))}
               <View style={styles.viewSpace} />

@@ -14,6 +14,20 @@ export const characters = gql`
   }
 `;
 
+export const nextPage = gql`
+  query nextPage($next: Int!) {
+    characters(page: $next) {
+      results {
+        id
+        name
+        species
+        status
+        image
+      }
+    }
+  }
+`;
+
 export const getCharte = gql`
   query getCharter($pId: ID!) {
     character(id: $pId) {

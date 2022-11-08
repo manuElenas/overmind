@@ -36,4 +36,16 @@ export const setDataModal: IAction<Result, void> = ({state}, dataResul) => {
   state.dataModal = dataResul;
 };
 
+//Cambiar pagina
+export const nextPages = async (
+  {state, effects}: Context,
+  page: number,
+): Promise<void> => {
+  const {characters} = await effects.gql.queries.nextPage({
+    next: page,
+  });
+
+  state.data = characters.results;
+};
+
 //leer documentacion graphQL

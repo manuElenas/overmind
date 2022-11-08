@@ -25,6 +25,11 @@ export interface Result {
   created?: Date;
 }
 
+export interface Episode {
+  episode: string;
+  name: string;
+}
+
 export enum Gender {
   Female = 'Female',
   Male = 'Male',

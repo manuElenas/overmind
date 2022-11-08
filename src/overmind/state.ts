@@ -1,4 +1,10 @@
-import {Gender, Result, Species, Status} from '../interfaces/RickAndMorty';
+import {
+  Episode,
+  Gender,
+  Result,
+  Species,
+  Status,
+} from '../interfaces/RickAndMorty';
 
 type State = {
   data: Result[];
@@ -11,7 +17,7 @@ type State = {
     status: Status | null;
     species: Species | null;
     gender: Gender | null;
-    episode: String[];
+    episode: Episode[];
   };
 };
 
