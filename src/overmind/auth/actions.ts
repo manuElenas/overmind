@@ -2,7 +2,7 @@ import {IAction} from 'overmind';
 import {Context} from '..';
 
 export const success: IAction<string, void> = ({state}: Context, user) => {
-  state.auth.send('SIGNED_IN', user);
+  state.auth.send('SIGNED_IN', user).matches('AUTENTICADO');
 };
 
 export const logOut = ({state}: Context) => {

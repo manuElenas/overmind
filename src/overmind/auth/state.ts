@@ -11,7 +11,7 @@ type State =
       user: string;
     }
   | {
-      current: 'NOAUTENTICADO';
+      current: 'NO_AUTENTICADO';
       signedOutReason: string;
     };
 
@@ -32,7 +32,7 @@ type States =
       user: string;
     }
   | {
-      current: 'NOAUTENTICANDO';
+      current: 'NO_AUTENTICADO';
       signedOutReason: string;
     };
 
@@ -50,15 +50,15 @@ type Events =
     };
 
 export const auth = statemachine<States, Events>({
-  NOAUTENTICANDO: {
+  NO_AUTENTICADO: {
     SIGNING_IN: () => ({current: 'AUTENTICANDO'}),
   },
-  AUTENTICANDO: {
+  AUTENTICADO: {
     SIGNED_IN: user => ({current: 'AUTENTICADO', user}),
   },
-  AUTENTICADO: {
+  AUTENTICANDO: {
     SIGNED_OUT: signedOutReason => ({
-      current: 'NOAUTENTICANDO',
+      current: 'NO_AUTENTICADO',
       signedOutReason,
     }),
   },

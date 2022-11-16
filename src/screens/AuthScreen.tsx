@@ -1,4 +1,4 @@
-import {View, StyleSheet, Text, Button, Alert} from 'react-native';
+import {View, StyleSheet, Text, Button} from 'react-native';
 import React from 'react';
 import Input from '../component/Input';
 import {useAction, useAppState} from '../overmind';
@@ -28,12 +28,8 @@ const AuthScreen = ({navigation}: Props) => {
         <Button
           title="Entrar"
           onPress={() => {
-            if (userName) {
-              success(userName);
-              navigation.navigate('HomeScreen');
-            } else {
-              Alert.alert('Aviso', 'Por favor, autentiquese primero');
-            }
+            success(userName);
+            navigation.navigate('HomeScreen');
           }}
         />
       </View>
