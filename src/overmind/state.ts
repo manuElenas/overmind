@@ -19,6 +19,7 @@ type State = {
     gender: Gender | null;
     episode: Episode[];
   };
+  userName: string;
 };
 
 export const state: State = {
@@ -34,4 +35,5 @@ export const state: State = {
     gender: null,
     episode: [],
   },
+  userName: '',
 };

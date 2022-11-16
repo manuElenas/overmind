@@ -4,15 +4,17 @@ import React from 'react';
 interface Props {
   placeHolder: string;
   keyboardType?: KeyboardTypeOptions;
+  handleUser: (text: string) => void;
 }
 
-const Input = ({placeHolder, keyboardType = 'default'}: Props) => {
+const Input = ({placeHolder, keyboardType = 'default', handleUser}: Props) => {
   return (
     <View style={styles.container}>
       <TextInput
         style={styles.inputContainer}
         placeholder={placeHolder}
         keyboardType={keyboardType}
+        onChangeText={handleUser}
       />
     </View>
   );

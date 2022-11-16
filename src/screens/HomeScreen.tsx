@@ -14,15 +14,28 @@ import React, {useEffect, useRef, useState} from 'react';
 import {useAction, useAppState} from '../overmind';
 import {Result} from '../interfaces/RickAndMorty';
 import CModal from '../component/CModal';
-//import useAPI from '../hooks/useAPI';
+import {StackScreenProps} from '@react-navigation/stack';
+import {RootStackParams} from '../navigation/StackNavigation';
 
 interface Props {
   item: Result;
 }
 
-const HomeScreen = () => {
-  const {nextPages, getPerson, getCharacters, stateModal} = useAction();
-  const {data, isLoading} = useAppState();
+interface PropsScreen extends StackScreenProps<RootStackParams, 'HomeScreen'> {}
+
+const HomeScreen = ({navigation}: PropsScreen) => {
+  const {
+    nextPages,
+    getPerson,
+    getCharacters,
+    stateModal,
+    auth: {logOut},
+  } = useAction();
+  const {
+    data,
+    isLoading,
+    auth: {current},
+  } = useAppState();
   const topRef = useRef<any>();
   const [num, setNum] = useState(2);
 
@@ -65,6 +78,14 @@ const HomeScreen = () => {
   return (
     <>
       <View style={styles.container}>
+        <Button
+          title="Salir"
+          onPress={() => {
+            logOut();
+            navigation.navigate('AuthScreen');
+          }}
+        />
+        <Text>{current}</Text>
         <FlatList
           data={data}
           renderItem={renderItem}
