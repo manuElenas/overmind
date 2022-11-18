@@ -85,7 +85,15 @@ const HomeScreen = ({navigation}: PropsScreen) => {
             navigation.navigate('AuthScreen');
           }}
         />
-        <Text>{states}</Text>
+        <Text
+          style={{
+            textAlign: 'center',
+            marginTop: 5,
+            color: '#fff',
+            fontSize: 15,
+          }}>
+          {`Estado Actual \n ${states[0][1]}`}
+        </Text>
         <FlatList
           data={data}
           renderItem={renderItem}

@@ -5653,7 +5653,7 @@ overmind-react@^29.0.2:
 
 overmind-statechart@^5.0.3:
   version "5.0.3"
-  resolved "https://registry.npmjs.org/overmind-statechart/-/overmind-statechart-5.0.3.tgz"
+  resolved "https://registry.yarnpkg.com/overmind-statechart/-/overmind-statechart-5.0.3.tgz#8d1e16513f62ff4d16ae5ef3e58f64cc8b7f00e1"
   integrity sha512-XdBxLUpNPyfUZMS8bnEkuNlLeGT6Ens0R6dZG6tXJLEWLawE3NRTfwzzjONFh3oKRw2QceVcyya3utJkHzTceg==
   dependencies:
     overmind "28.0.2"

@@ -23,32 +23,32 @@ const config = {
 const loginChart: Statechart<
   typeof config,
   {
-    LOGIN: void;
-    AUTHENTICATING: void;
-    AUTHENTICATED: void;
-    ERROR: void;
+    INGRESAR: void;
+    AUTENTICANDO: void;
+    AUTENTICADO: void;
+    NO_AUTENTICADO: void;
   }
 > = {
-  initial: 'LOGIN',
+  initial: 'INGRESAR',
   states: {
-    LOGIN: {
+    INGRESAR: {
       on: {
-        loginUser: 'AUTHENTICATING',
+        loginUser: 'AUTENTICANDO',
       },
     },
-    AUTHENTICATING: {
+    AUTENTICANDO: {
       on: {
-        fullLoging: 'AUTHENTICATED',
+        fullLoging: 'AUTENTICADO',
       },
     },
-    AUTHENTICATED: {
+    AUTENTICADO: {
       on: {
-        logOut: 'LOGIN',
+        logOut: 'INGRESAR',
       },
     },
-    ERROR: {
+    NO_AUTENTICADO: {
       on: {
-        // tryAgain: 'LOGIN',
+        tryAgain: 'INGRESAR',
       },
     },
   },

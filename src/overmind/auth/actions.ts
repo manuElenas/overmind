@@ -4,16 +4,19 @@ import {Context} from '..';
 export const loginUser = async (
   {state, actions}: Context,
   {username, password}: {username: string; password: string},
-): Promise<void> => {
+) => {
   if (username && password) {
     state.auth.username = username;
     state.auth.password = password;
+    await new Promise((resolve: any) => setTimeout(resolve, 1000));
     actions.auth.fullLoging();
   } else {
-    actions.auth.logOut();
+    await new Promise((resolve: any) => setTimeout(resolve, 1000));
   }
 };
 
-export const logOut = () => {};
+export const tryAgain = () => {};
 
-export const fullLoging = () => {};
+export const logOut = (): void => {};
+
+export const fullLoging = (): void => {};

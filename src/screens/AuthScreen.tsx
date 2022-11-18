@@ -1,3 +1,4 @@
+/* eslint-disable react-native/no-inline-styles */
 import {View, StyleSheet, Text, Button} from 'react-native';
 import React, {useState} from 'react';
 import Input from '../component/Input';
@@ -29,8 +30,8 @@ const AuthScreen = ({navigation}: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.containerText}>{states[0][1]}</Text>
-      <Text style={styles.containerText}>LogIn</Text>
+      <Text
+        style={styles.containerText}>{`Estado Actual \n ${states[0][1]}`}</Text>
       <Input
         placeHolder="Usuario"
         handleUser={(text: string) => handleUserName(text)}
