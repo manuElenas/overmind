@@ -34,7 +34,7 @@ const HomeScreen = ({navigation}: PropsScreen) => {
   const {
     data,
     isLoading,
-    auth: {current},
+    auth: {states},
   } = useAppState();
   const topRef = useRef<any>();
   const [num, setNum] = useState(2);
@@ -85,7 +85,15 @@ const HomeScreen = ({navigation}: PropsScreen) => {
             navigation.navigate('AuthScreen');
           }}
         />
-        <Text>{current}</Text>
+        <Text
+          style={{
+            textAlign: 'center',
+            marginTop: 5,
+            color: '#fff',
+            fontSize: 15,
+          }}>
+          {`Estado Actual \n ${states[0][1]}`}
+        </Text>
         <FlatList
           data={data}
           renderItem={renderItem}

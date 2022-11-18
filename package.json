@@ -16,6 +16,7 @@
     "overmind": "^28.0.2",
     "overmind-graphql": "^8.0.2",
     "overmind-react": "^29.0.2",
+    "overmind-statechart": "^5.0.3",
     "react": "18.1.0",
     "react-native": "0.70.4",
     "react-native-gesture-handler": "^2.8.0",
