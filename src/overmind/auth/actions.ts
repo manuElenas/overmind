@@ -1,10 +1,19 @@
-import {IAction} from 'overmind';
+// import {IAction} from 'overmind';
 import {Context} from '..';
 
-export const success: IAction<string, void> = ({state}: Context, user) => {
-  state.auth.send('SIGNED_IN', user).matches('AUTENTICADO');
+export const loginUser = async (
+  {state, actions}: Context,
+  {username, password}: {username: string; password: string},
+): Promise<void> => {
+  if (username && password) {
+    state.auth.username = username;
+    state.auth.password = password;
+    actions.auth.fullLoging();
+  } else {
+    actions.auth.logOut();
+  }
 };
 
-export const logOut = ({state}: Context) => {
-  state.auth.send('SIGNED_OUT');
-};
+export const logOut = () => {};
+
+export const fullLoging = () => {};

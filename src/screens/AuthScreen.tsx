@@ -1,5 +1,5 @@
 import {View, StyleSheet, Text, Button} from 'react-native';
-import React from 'react';
+import React, {useState} from 'react';
 import Input from '../component/Input';
 import {useAction, useAppState} from '../overmind';
 import {StackScreenProps} from '@react-navigation/stack';
@@ -8,27 +8,44 @@ import {RootStackParams} from '../navigation/StackNavigation';
 interface Props extends StackScreenProps<RootStackParams, 'AuthScreen'> {}
 
 const AuthScreen = ({navigation}: Props) => {
+  const [username, setUserName] = useState('');
+  const [password, setPassword] = useState('');
+
   const {
-    auth: {success},
-    handleUserName,
+    auth: {loginUser},
   } = useAction();
 
   const {
-    auth: {current},
-    userName,
+    auth: {states},
   } = useAppState();
+
+  const handleUserName = (text: string) => {
+    setUserName(text);
+  };
+
+  const handlePassword = (text: string) => {
+    setPassword(text);
+  };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.containerText}>{current}</Text>
+      <Text style={styles.containerText}>{states[0][1]}</Text>
       <Text style={styles.containerText}>LogIn</Text>
-      <Input placeHolder="Usuario" handleUser={handleUserName} />
-      {/* <Input placeHolder="Contraseña" /> */}
+      <Input
+        placeHolder="Usuario"
+        handleUser={(text: string) => handleUserName(text)}
+        value={username}
+      />
+      <Input
+        placeHolder="Contraseña"
+        handleUser={(text: string) => handlePassword(text)}
+        value={password}
+      />
       <View style={styles.containerButton}>
         <Button
           title="Entrar"
           onPress={() => {
-            success(userName);
+            loginUser({username, password});
             navigation.navigate('HomeScreen');
           }}
         />

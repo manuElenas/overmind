@@ -48,13 +48,4 @@ export const nextPages = async (
   state.data = characters.results;
 };
 
-//HANDLE CHANGE USERNAME
-
-export const handleUserName: IAction<string, void> = (
-  {state}: Context,
-  text,
-) => {
-  state.userName = text;
-};
-
 //leer documentacion graphQL

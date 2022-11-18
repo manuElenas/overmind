@@ -5,9 +5,15 @@ interface Props {
   placeHolder: string;
   keyboardType?: KeyboardTypeOptions;
   handleUser: (text: string) => void;
+  value: string;
 }
 
-const Input = ({placeHolder, keyboardType = 'default', handleUser}: Props) => {
+const Input = ({
+  value,
+  placeHolder,
+  keyboardType = 'default',
+  handleUser,
+}: Props) => {
   return (
     <View style={styles.container}>
       <TextInput
@@ -15,6 +21,7 @@ const Input = ({placeHolder, keyboardType = 'default', handleUser}: Props) => {
         placeholder={placeHolder}
         keyboardType={keyboardType}
         onChangeText={handleUser}
+        value={value}
       />
     </View>
   );
