@@ -13,7 +13,7 @@ const AuthScreen = ({navigation}: Props) => {
   const [password, setPassword] = useState('');
 
   const {
-    auth: {loginUser},
+    auth: {loginUser, noAuthentic},
   } = useAction();
 
   const {
@@ -30,8 +30,13 @@ const AuthScreen = ({navigation}: Props) => {
 
   return (
     <View style={styles.container}>
-      <Text
-        style={styles.containerText}>{`Estado Actual \n ${states[0][1]}`}</Text>
+      <Text style={styles.containerText}>{`Estado Actual \n ${
+        states[0][1]
+      } \n ${
+        states[0][1] === 'NO_AUTENTICADO'
+          ? 'Favor ingrese un usuario y una contraseña'
+          : ''
+      }`}</Text>
       <Input
         placeHolder="Usuario"
         handleUser={(text: string) => handleUserName(text)}
@@ -46,8 +51,14 @@ const AuthScreen = ({navigation}: Props) => {
         <Button
           title="Entrar"
           onPress={() => {
-            loginUser({username, password});
-            navigation.navigate('HomeScreen');
+            if (username && password) {
+              loginUser({username, password});
+              navigation.navigate('HomeScreen');
+              setPassword('');
+              setUserName('');
+            } else {
+              noAuthentic();
+            }
           }}
         />
       </View>

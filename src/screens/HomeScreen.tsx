@@ -9,6 +9,8 @@ import {
   Text,
   TouchableOpacity,
   Button,
+  BackHandler,
+  Alert,
 } from 'react-native';
 import React, {useEffect, useRef, useState} from 'react';
 import {useAction, useAppState} from '../overmind';
@@ -38,6 +40,32 @@ const HomeScreen = ({navigation}: PropsScreen) => {
   } = useAppState();
   const topRef = useRef<any>();
   const [num, setNum] = useState(2);
+
+  //BACKPRESS
+  const backAction = () => {
+    Alert.alert('¿Deseas salir?', 'Quieres salir de la aplicación', [
+      {
+        text: 'Cancelar',
+        onPress: () => null,
+        style: 'cancel',
+      },
+      {
+        text: 'Salir',
+        onPress: () => {
+          BackHandler.exitApp();
+          logOut();
+        },
+      },
+    ]);
+    return true;
+  };
+
+  useEffect(() => {
+    BackHandler.addEventListener('hardwareBackPress', backAction);
+    return () => {
+      BackHandler.removeEventListener('hardwareBackPress', backAction);
+    };
+  }, []);
 
   useEffect(() => {
     getCharacters();
