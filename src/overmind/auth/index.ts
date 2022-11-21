@@ -5,15 +5,6 @@ import {state} from './state';
 import * as actions from './actions';
 import {gql} from '../effects/gql';
 
-// const config = {
-//   state: auth.create({
-//     current: 'AUTENTICANDO',
-//   }),
-//   actions,
-// };
-
-// export default config;
-
 const config = {
   state,
   actions,
@@ -34,11 +25,13 @@ const loginChart: Statechart<
     INGRESAR: {
       on: {
         loginUser: 'AUTENTICANDO',
+        noAuthentic: 'NO_AUTENTICADO',
       },
     },
     AUTENTICANDO: {
       on: {
         fullLoging: 'AUTENTICADO',
+        noAuthentic: 'NO_AUTENTICADO',
       },
     },
     AUTENTICADO: {
@@ -48,7 +41,8 @@ const loginChart: Statechart<
     },
     NO_AUTENTICADO: {
       on: {
-        tryAgain: 'INGRESAR',
+        loginUser: 'AUTENTICANDO',
+        noAuthentic: 'NO_AUTENTICADO',
       },
     },
   },

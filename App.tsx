@@ -7,8 +7,7 @@ import {NavigationContainer} from '@react-navigation/native';
 import StackNavigation from './src/navigation/StackNavigation';
 
 const overmind = createOvermind(config, {
-  // devtools: '192.168.1.13:3031',
-  devtools: '192.168.1.2:3031',
+  devtools: '192.168.1.4:3031',
 });
 // const overmind = createOvermind(config);
 
